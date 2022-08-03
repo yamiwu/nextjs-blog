@@ -10,7 +10,7 @@ const postsDirectory = path.join(process.cwd(), 'posts')
 //   id: string;
 //   title: string;
 //   date: any;
-//   // [key: string]: any;
+//   [key: string]: any;
 // }
 export function getSortedPostsData(): any {
   // Get file names under /posts
@@ -25,12 +25,13 @@ export function getSortedPostsData(): any {
 
     // Use gray-matter to parse the post metadata section
     const matterResult = matter(fileContents)
-    console.log('matterResult', matterResult);
 
     // Combine the data with the id
     return {
       id,
-      ...matterResult.data
+      title: matterResult.data.title,
+      date: matterResult.data.date,
+      // ...matterResult.data
     }
   });
   // Sort posts by date
